@@ -12,7 +12,7 @@ public class Success {
     }
 
     public void setTransactionalId(String transactionalId) {
-        transactionalId = transactionalId;
+        this.transactionalId = transactionalId;
     }
 
     public TransferDetails getTransferDetails() {
