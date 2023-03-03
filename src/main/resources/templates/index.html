@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Funds Transfer</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Funds Transfer</h1>
+    <form action="#" data-th-action="@{/transfer}" data-th-object="${transferDetails}" method="post">
+        <table>
+            <tr>
+                <td>From account:</td>
+                <td>
+                    <select name="fromAccountId">
+                        <option data-th-each="account : ${accounts}"
+                                data-th-value="${account.getAccountId()}"
+                                data-th-text="${account.getName() + ' (' + account.getAccountId() + ')'}"
+                                data-th-selected="${account.accountId == transferDetails.fromAccount}"></option>
+                    </select>
+                </td>
+                <td data-th-if="${#fields.hasErrors('fromAccount')}">
+                    <div data-th-errors="*{fromAccount}" data-th-errorclass="error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>To account:</td>
+                <td>
+                    <select name="toAccountId">
+                        <option data-th-each="account : ${accounts}"
+                                data-th-value="${account.getAccountId()}"
+                                data-th-text="${account.getName() + ' (' + account.getAccountId() + ')'}"
+                                data-th-selected="${account.accountId == transferDetails.toAccount}"></option>
+                    </select>
+                </td>
+                <td data-th-if="${#fields.hasErrors('toAccount')}">
+                    <div data-th-errors="*{toAccount}" data-th-errorclass="error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td>$<input type="number" name="amount" step="0.01" min="10.00" required 
+                    data-th-field="*{transferAmount}" data-th-value="${transferDetails.transferAmount}"></td>
+                <td data-th-if="${#fields.hasErrors('transferAmount')}">
+                    <div data-th-errors="*{transferAmount}" data-th-errorclass="error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Comments:</td>
+                <td><textarea name="comments" placeholder="Type here" data-th-value="${transferDetails.comments}"></textarea></td>
+                <td data-th-if="${#fields.hasErrors('comments')}">
+                    <div data-th-errors="*{comments}" data-th-errorclass="error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Transfer</button></td>
+            </tr>
+                
+        </table>
+        <div th:if="${#fields.hasErrors()}">
+            <p>Error message:</p>
+            <ul>
+                <li th:each="error : ${#fields.errors()}" th:text="${error}"></li>
+            </ul>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transfer Success</title>
+</head>
+<body>
+    <h1>Transfer Successful</h1>
+    <p>Your transfer of <span data-th-text="${success.amount}"></span> from <span data-th-text="${transferDetails.name}"></span> 
+        (<span data-th-text="${accountFrom.id}"></span>) to <span data-th-text="${accountTo.name}"></span> 
+        (<span th:text="${accountTo.id}"></span>) is successful.</p>
+    <p>Transaction ID is <span data-th-text="${success.transactionId}"></span>.</p>
+</body>
+</html>
