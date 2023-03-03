@@ -3,16 +3,16 @@ package sg.edu.nus.iss.app.day30assessment.models;
 
 public class Success {
     
-    private String TransactionalId;
-
+    private String transactionalId;
+    private String date;
     private final TransferDetails transferDetails;
 
     public String getTransactionalId() {
-        return TransactionalId;
+        return transactionalId;
     }
 
     public void setTransactionalId(String transactionalId) {
-        TransactionalId = transactionalId;
+        transactionalId = transactionalId;
     }
 
     public TransferDetails getTransferDetails() {
